@@ -27,15 +27,21 @@ impl Display for City {
 struct Color {
     red: u8,
     green: u8,
-    blue: u8
+    blue: u8,
 }
 
 impl Display for Color {
     fn fmt(&self, f: &mut Formatter) -> fmt::Result {
-        write!(f, "RGB ({}, {}, {}) #{:02X}{:02X}{:02X}", self.red, self.green, self.blue, self.red, self.green, self.blue)
+        // write!(f, "RGB ({}, {}, {}) #{:02X}{:02X}{:02X}", self.red, self.green, self.blue, self.red, self.green, self.blue)
+        write!(
+            f,
+            "RGB ({red}, {green}, {blue}) #{red:02X}{green:02X}{blue:02X}",
+            red = self.red,
+            green = self.green,
+            blue = self.blue
+        )
     }
 }
-
 
 fn main() {
     for city in [
@@ -61,10 +67,24 @@ fn main() {
     }
 
     for color in [
-        Color { red: 128, green: 255, blue: 90 },
-        Color { red: 0, green: 3, blue: 254 },
-        Color { red: 0, green: 0, blue: 0 },
-    ].iter() {
+        Color {
+            red: 128,
+            green: 255,
+            blue: 90,
+        },
+        Color {
+            red: 0,
+            green: 3,
+            blue: 254,
+        },
+        Color {
+            red: 0,
+            green: 0,
+            blue: 0,
+        },
+    ]
+    .iter()
+    {
         // Switch this to use {} once you've added an implementation
         // for fmt::Display.
         // println!("{:?}", *color);
